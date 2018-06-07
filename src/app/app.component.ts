@@ -8,6 +8,7 @@ import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { StorageService } from './services/storage.service';
 
 
 @Component({
@@ -18,13 +19,14 @@ export class MyApp {
 
   // make HelloIonicPage the root (or first) page
   rootPage = LoginPage;
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{ title: string, component: any }>;
 
   constructor(
     public platform: Platform,
     public menu: MenuController,
     public statusBar: StatusBar,
-    public splashScreen: SplashScreen
+    public splashScreen: SplashScreen,
+    private storageService: StorageService
   ) {
     this.initializeApp();
 
@@ -35,11 +37,15 @@ export class MyApp {
       { title: 'My First List', component: ListPage }
     ];
   }
-
+  handleLoggedin(res: string): void {
+    if (res !== undefined)
+      this.nav.setRoot(HelloIonicPage)
+  }
   initializeApp() {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+      this.storageService.setKey('token').get(this.handleLoggedin.bind(this))
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
