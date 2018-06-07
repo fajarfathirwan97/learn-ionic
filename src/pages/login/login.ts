@@ -1,6 +1,7 @@
 import { Component, Injectable } from "@angular/core";
 import { NavController } from "ionic-angular";
-import { ApiService } from "../../app/api.service";
+import { ApiService } from "../../app/services/api.service";
+import { StorageService } from "../../app/services/storage.service";
 
 
 interface ILogin {
@@ -18,18 +19,19 @@ export class LoginPage {
     password: '',
   }
   isFetching: boolean = false
-  constructor(private navCtrl: NavController, private apiService: ApiService) {
+  constructor(private navCtrl: NavController, private apiService: ApiService, private storageService: StorageService) {
   }
 
   public handleChangeTextInput(event: any, key?: string) {
     this.form = { ...this.form, [key]: event.value }
   }
 
-  private handleSignIn(data) {
+  public handleSignIn(data) {
     console.log('success', data)
+    this.storageService.setKey('token').set(data.token).get(res => { console.log(res, 'sdsa') })
   }
 
   private signIn() {
-    this.apiService.setBody(this.form).setEndPoint('api/login').post(this.handleSignIn)
+    this.apiService.setBody(this.form).setEndPoint('api/login').post(this.handleSignIn.bind(this))
   }
 }

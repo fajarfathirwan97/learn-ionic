@@ -1,29 +1,35 @@
 <ion-content>
-  <ion-row class="title" col-md-4 offset-md-4 align-items-end justify-content-center>
-    <ion-col>Sign In to Continue</ion-col>
-  </ion-row>
-  <ion-row class="loginWrap" col-md-4 offset-md-4 align-items-center justify-content-center>
+  <ion-grid col-12 col-sm-4 offset-sm-4 align-items-end justify-content-center>
+    <ion-row class="title">
+      <ion-col>Sign In to Continue</ion-col>
+    </ion-row>
+    <ion-row class="loginWrap">
 
-    <ion-col col-12>
-      <ion-row>
-        <ion-item>
-          <ion-label color="primary" floating>Email</ion-label>
-          <ion-input (ionChange)="handleChangeTextInput($event,'email');"></ion-input>
-        </ion-item>
-      </ion-row>
+      <ion-col col-12>
+        <ion-row>
+          <ion-item>
+            <ion-label color="primary" floating>Email</ion-label>
+            <ion-input (ionChange)="handleChangeTextInput($event,'email');"></ion-input>
+          </ion-item>
+        </ion-row>
 
-      <ion-row>
-        <ion-item>
-          <ion-label color="primary" floating>Password</ion-label>
-          <ion-input name='password' (ionChange)="handleChangeTextInput($event,'password');" type="password"></ion-input>
-        </ion-item>
-      </ion-row>
+        <ion-row>
+          <ion-item>
+            <ion-label color="primary" floating>Password</ion-label>
+            <ion-input name='password' (ionChange)="handleChangeTextInput($event,'password');" type="password"></ion-input>
+          </ion-item>
+        </ion-row>
 
+        <ion-row>
 
-      <button full ion-button (click)='signIn();'>
-        <ion-spinner *ngIf="apiService.isFetching" size='small'></ion-spinner>
-        <ion-col *ngIf="!apiService.isFetching">Sign In</ion-col>
-      </button>
-    </ion-col>
-  </ion-row>
+          <button full ion-button (click)='signIn();'>
+            <ion-spinner *ngIf="apiService.isFetching" size='small'></ion-spinner>
+            <ion-col *ngIf="!apiService.isFetching">Sign In</ion-col>
+          </button>
+
+        </ion-row>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
 </ion-content>

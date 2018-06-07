@@ -38,7 +38,7 @@ export class ApiService {
         this.isFetching = false;
       }, err => {
         this.toastController.create({
-          message: err.error.error,
+          message: err.error.error || err.message,
           duration: 3000,
           position: 'bottom'
         }).present()
