@@ -30,6 +30,7 @@ export class ApiService {
     this.endPoint = endPoint
     return this
   }
+
   public post(success: any) {
     this.isFetching = true
     return this.http.post(`${this.url}${this.endPoint}`, this.body)

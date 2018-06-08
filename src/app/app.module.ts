@@ -3,7 +3,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { IonicStorageModule } from "@ionic/storage";
-import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
+import { Home } from '../pages/home/home';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
 import { LoginPage } from '../pages/login/login';
@@ -19,7 +19,7 @@ import { StorageService } from './services/storage.service';
 @NgModule({
   declarations: [
     MyApp,
-    HelloIonicPage,
+    Home,
     ItemDetailsPage,
     ListPage,
     LoginPage,
@@ -34,7 +34,7 @@ import { StorageService } from './services/storage.service';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HelloIonicPage,
+    Home,
     ItemDetailsPage,
     ListPage,
     LoginPage,

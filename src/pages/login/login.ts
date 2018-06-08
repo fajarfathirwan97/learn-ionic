@@ -2,6 +2,7 @@ import { Component, Injectable } from "@angular/core";
 import { NavController } from "ionic-angular";
 import { ApiService } from "../../app/services/api.service";
 import { StorageService } from "../../app/services/storage.service";
+import { Home } from "../home/home";
 
 
 interface ILogin {
@@ -27,8 +28,8 @@ export class LoginPage {
   }
 
   public handleSignIn(data) {
-    console.log('success', data)
     this.storageService.setKey('token').set(data.token).get(res => { console.log(res, 'sdsa') })
+    this.navCtrl.setRoot(Home)
   }
 
   private signIn() {

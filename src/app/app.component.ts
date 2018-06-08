@@ -3,7 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 
 import { Platform, MenuController, Nav } from 'ionic-angular';
 
-import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
+import { Home } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -32,23 +32,31 @@ export class MyApp {
 
     // set our app's pages
     this.pages = [
-      { title: 'Hello Ionic', component: HelloIonicPage },
-      { title: 'Login', component: LoginPage },
-      { title: 'My First List', component: ListPage }
+      { title: 'Home', component: Home },
     ];
   }
   handleLoggedin(res: string): void {
-    if (res !== undefined)
-      this.nav.setRoot(HelloIonicPage)
+    if (res) {
+      this.menu.enable(true)
+      this.nav.setRoot(Home)
+    }
   }
+
   initializeApp() {
     this.platform.ready().then(() => {
+      this.storageService.setKey('token').get(this.handleLoggedin.bind(this))
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      this.storageService.setKey('token').get(this.handleLoggedin.bind(this))
+      this.menu.enable(false)
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  logout() {
+    this.menu.close();
+    this.storageService.remove()
+    this.nav.setRoot(LoginPage)
   }
 
   openPage(page) {

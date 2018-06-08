@@ -27,6 +27,19 @@ export class StorageService {
       })
     return this
   }
+
+  public remove(): void {
+    this.storage.remove(this.key)
+      .then(res => { console.log('success remove storage') })
+      .catch(err => {
+        this.toastController.create({
+          message: 'Error remove Storage',
+          duration: 3000,
+          position: 'bottom'
+        }).present()
+      })
+  }
+
   public get(succes: any): void {
     this.storage.get(this.key)
       .then(res => { succes(res) })

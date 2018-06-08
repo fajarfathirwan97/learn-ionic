@@ -1,4 +1,4 @@
-<!-- <ion-menu [content]="content">
+<ion-menu [content]="content">
 
   <ion-header>
     <ion-toolbar>
@@ -11,9 +11,13 @@
       <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
         {{p.title}}
       </button>
+
+      <button ion-item (click)="logout();">
+        Logout
+      </button>
     </ion-list>
   </ion-content>
 
-</ion-menu> -->
+</ion-menu>
 
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
